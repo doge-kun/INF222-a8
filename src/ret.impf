@@ -1,0 +1,12 @@
+var max = fun (a, b) {
+    if (a > b)
+        return a;
+    else
+        return b;
+};
+
+var a = 5;
+var b = 9;
+var m = max(a, b);
+
+println("Max of ", a, " and ", b, " is ", m);

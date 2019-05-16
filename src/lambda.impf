@@ -1,0 +1,22 @@
+// Using lambda expressions
+
+// Return a second degree polynomial with the given coefficients
+var polymaker = \(a, b, c) . \(x) . a*x*x + b*x + c;
+
+// mypoly(x) = x^2 + 5x + 6
+var a = 1;
+var b = 5;
+var c = 6;
+var mypoly = polymaker(a,b,c);
+
+var i = ref 0;
+var xs = [0,2,3,5,7,12];
+var N = 5;
+
+println("f(x) = ", a, "x^2 + ", b, "x + ", c);
+while (*i < N) {
+    i = *i + 1;
+    var x = xs(*i - 1);
+    var res = mypoly(x);
+    println("f(", x, ") = ", res);
+}

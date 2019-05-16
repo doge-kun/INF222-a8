@@ -1,0 +1,134 @@
+// A showcase of the language
+
+
+// The return statment
+println("\nReturn statement");
+
+var fib = ref 0;
+fib = fun (n) {
+    if (n == 0) return 0; else;
+    if (n == 1) return 1; else;
+    return (*fib)(n-1) + (*fib)(n-2);
+};
+
+var n = 10;
+println("fib(", n, ") = ", (*fib)(n));
+
+
+// Try/catch statements
+println("\nTry/catch");
+
+var div = fun (a, b) {
+    if (b==0) throw "Divide by zero!"; else;
+    return a/b;
+};
+
+var a = 5;
+var b = 0;
+
+try {
+    var x = div(a, b);
+    println(x);
+} catch (e) {
+    println("Exception: ", e);
+}
+
+
+// Continuations
+println("\nContinuations");
+
+var res = reset(fun() {
+    var x = shift(fun(k) {
+        var a = k(5);
+        var b = k(a);
+        return a + b;
+    });
+    return 3 + x;
+});
+
+println("Expected 19, got ", res);
+
+// Jaakko's Example
+println (
+  reset (
+    fun() {
+      println("Starting...");
+      var x = shift (
+        fun(k) {
+          var a = k(1);
+          println(a);
+          k(2);
+          return k;
+        }
+      ) + 10;
+      println(x);
+      return x+100;
+    }
+  )(1000)
+);
+
+// Lambdas
+println("\nLambdas");
+
+var id = \(x) . x;
+var double = \(x) -> 2*x; // Alternative syntax
+var add = \(a) . \(b) . a+b;
+
+var original = (\_ . 10)();
+var twice = double(original);
+var alsoTwice = id(twice);
+var sum = add(original)(alsoTwice);
+
+println("twice of ", original, " is ", twice);
+println("id of ", twice, " is ", alsoTwice);
+println("sum of ", original, " and ", alsoTwice, " is ", sum);
+
+
+// Lists
+println("\nLists");
+
+var xs = [3,1,4,1,5];
+var fst = \(x) . x(0);
+var x = fst(xs);
+println("The first element of ", xs, " is ", x);
+
+// Mutable list
+println("\nMutable Lists");
+var size = 3;
+var a = ref 0;
+var b = ref 2;
+var c = ref 5;
+var ys = [a, b, c];
+
+print("Original list: ");
+
+var printList = fun(xs) {
+    var i = ref 0;
+    while (*i < size) {
+        print(*(xs(*i)), ":");
+        i = *i + 1;
+    }
+    println("[]");
+};
+
+printList(ys);
+
+// Apply a function to each element of a list
+var map = fun(f, xs) {
+    var i = ref 0;
+    
+    while (*i < size) {
+        var r = ys(*i);
+        r = f(*r);
+        i = *i + 1;
+    }
+
+    return xs;
+};
+
+var double = \(x) . 2*x;
+var triple = \(x) . 3*x;
+
+var zs = map(triple, map(double, ys));
+print("New list: ");
+printList(zs);

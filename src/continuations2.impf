@@ -1,0 +1,21 @@
+
+var k = reset(function() {
+  var stop = ref shift(\(k) . k);
+  var k2 = reset(function() {
+    var tmp = shift(\(k2) . k2);
+    while (true) {
+      if (*stop || tmp) {
+        println("Stopping");
+        return k2(false);
+      } else {}
+
+      println("Continued!");
+      return 5;
+    }
+  });
+  return k2(stop);
+});
+
+var b = k(false);
+var c = b(false);
+println(c(true));

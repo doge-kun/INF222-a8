@@ -1,0 +1,42 @@
+// Example 1
+var res = reset(fun () { return 5; });
+println("Expected 5, got ", res);
+
+// Example 2
+var res = reset(fun () {
+    var x = shift(fun (k) {
+        var double = k;
+        var six = double(3);
+        var four = double(2);
+        var res = k(six) - four + 1;
+        return res;
+    });
+
+    return 2*x;
+});
+println("Expected 9, got ", res);
+
+// Example 3
+var res = reset(\_ -> {
+    3 + shift(\(k) . k(k(4)))
+});
+println("Expected 10, got ", res);
+
+// Example 4
+println (
+  reset (
+    fun() {
+      println("Starting...");
+      var x = shift (
+        fun(k) {
+          var a = k(1);
+          println(a);
+          k(2);
+          return k;
+        }
+      ) + 10;
+      println(x);
+      return x+100;
+    }
+  )(1000)
+);

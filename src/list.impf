@@ -1,0 +1,3 @@
+var list = [0, 7];
+var fst = list(2);
+println("First element of ", list, " is ", fst);

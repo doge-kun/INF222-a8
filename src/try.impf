@@ -1,0 +1,10 @@
+var div = fun (a, b) {
+    if (b == 0) throw "Division by zero!"; else;
+    return (a/b);
+};
+
+try {
+    div(5, 0);
+} catch (e) {
+    println("Error: ", e);
+}

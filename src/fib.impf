@@ -1,0 +1,19 @@
+var f = ref 0;
+var x = 10;
+
+// Factorial
+f = fun(n) {
+    if (n == 1) return 1; else;
+    return n*(*f)(n-1);
+};
+
+println("fac(", x, ") = ", (*f)(x));
+
+// Fibonacci
+f = fun(n) {
+    if (n == 0) return 0; else;
+    if (n == 1) return 1; else;
+    return (*f)(n-1) + (*f)(n-2);
+};
+
+println("fib(", x, ") = ", (*f)(x));
